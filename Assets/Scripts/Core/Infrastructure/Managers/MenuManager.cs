@@ -1,18 +1,24 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+using Zenject;
 
 public class MenuManager : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    private IGameAnalyticsService _analyticsService;
+    private ISoundManager _soundManager;
+
+    [Inject]
+    private void Construct(
+        IGameAnalyticsService analyticsService,
+        ISoundManager soundManager)
     {
-        
+        _analyticsService = analyticsService;
+        _soundManager = soundManager;
     }
 
-    // Update is called once per frame
-    void Update()
+    public void StartGame()
     {
-        
+        _analyticsService.LogGameStart();
+        SceneManager.LoadScene("GameScene"); // Make sure to set up your scene name
     }
 }
