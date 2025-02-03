@@ -1,4 +1,5 @@
 ﻿using DG.Tweening;
+using RTLTMPro;
 using System;
 using TMPro;
 using UnityEngine;
@@ -7,11 +8,11 @@ using Zenject;
 
 public class QuestionPanel : MonoBehaviour
 {
-    [SerializeField] private TextMeshProUGUI questionText;
+    [SerializeField] private RTLTextMeshPro questionText;
     [SerializeField] private Button[] answerButtons;
     //[SerializeField] private Image timerFill;
-    [SerializeField] private TextMeshProUGUI timerText;
-
+    [SerializeField] private RTLTextMeshPro timerText;
+    
     [Inject] private IGameManager _gameManager;
     [Inject] private GameConfig _gameConfig;
     private float startTime;
