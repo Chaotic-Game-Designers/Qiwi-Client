@@ -1,19 +1,19 @@
+using System;
 using UnityEngine;
 using Zenject;
 
 public class GameInstaller : MonoInstaller
 {
-    [SerializeField] private SoundManager soundManager;
-    [SerializeField] private GameManager gameManager;
-    [SerializeField] private GameAnalyticsService analyticsService;
-
+    [SerializeField] private GameConfig gameConfig;
     public override void InstallBindings()
     {
-        Container.Bind<ISoundManager>().FromInstance(soundManager).AsSingle();
-        Container.Bind<GameManager>().FromInstance(gameManager).AsSingle();
-        Container.Bind<IGameAnalyticsService>().FromInstance(analyticsService).AsSingle();
+        Container.Bind<IAudioManager>().To<AudioManager>().FromNewComponentOnNewGameObject().AsSingle().NonLazy();
+        Container.Bind<GameConfig>().FromInstance(gameConfig).AsSingle();
+        Container.Bind<IGameAnalyticsService>().To<GameAnalyticsService>().AsSingle();
+        Container.Bind<IQuestionRepository>().To<QuestionRepository>().AsSingle();
+        Container.Bind<IScoreCalculator>().To<ScoreCalculator>().AsSingle();
+        Container.Bind<IGameManager>().To<GameManager>().AsSingle();
 
-        // Bind other game-specific services
-        Container.Bind<GameState>().AsSingle();
+        Container.BindInterfacesTo<GameInitializer>().AsSingle();
     }
 }
