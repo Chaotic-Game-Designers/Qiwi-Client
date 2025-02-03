@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: GameConfig
   m_EditorClassIdentifier: 
   loadingScreenMinDuration: 1
-  maxTimeToAnswer: 10
+  maxTimeToAnswer: 20
   backgroundMusic: BackgroundMusic
   buttonClickSound: ButtonClickSound
